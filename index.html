@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSFP15 Symposium 2027</title>
+<meta name="description" content="15th International Symposium on Turbulence and Shear Flow Phenomena (TSFP15), 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a quiet academic site with a live flow-field hero; colors borrowed from the
+   blue–white–red diverging map used to plot vorticity. */
+:root{
+  --ink:#14202e;          /* text */
+  --paper:#f6f8fa;        /* page background */
+  --panel:#ffffff;        /* cards, nav */
+  --line:#d9e0e8;         /* rules */
+  --muted:#5a6878;        /* secondary text */
+  --cold:#1f5fa8;         /* negative vorticity, primary accent */
+  --warm:#c2402f;         /* positive vorticity, highlights */
+  --hero:#0c1724;         /* hero ground */
+  --font-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --s1:.25rem;--s2:.5rem;--s3:1rem;--s4:1.5rem;--s5:2.5rem;--s6:4rem;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e4eaf1;--paper:#0e151d;--panel:#151f2a;--line:#263444;--muted:#93a3b5;
+    --cold:#6aa6ec;--warm:#ef7b69;--hero:#070d14;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e4eaf1;--paper:#0e151d;--panel:#151f2a;--line:#263444;--muted:#93a3b5;
+  --cold:#6aa6ec;--warm:#ef7b69;--hero:#070d14;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:var(--cold)}
+a:hover{color:var(--warm)}
+:focus-visible{outline:2px solid var(--warm);outline-offset:2px;border-radius:2px}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(2rem,4vw,2.75rem)}
+h3{font-size:1.5rem}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 max(16px,4vw)}
+.skip{position:absolute;left:-999px;top:0;background:var(--panel);padding:var(--s2) var(--s3);z-index:50}
+.skip:focus{left:16px}
+
+/* Header */
+header.site{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:var(--s4);min-height:64px}
+.brand{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--ink);flex-shrink:0}
+.brand svg{width:34px;height:34px}
+.brand b{font:600 1.05rem/1 var(--font-body);letter-spacing:.02em}
+.brand span{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.bar{flex-wrap:wrap;row-gap:0}
+nav.main{flex-basis:100%;border-top:1px solid var(--line);padding:4px 0}
+nav.main ul{list-style:none;margin:0 0 0 -.6rem;padding:0;display:flex;flex-wrap:wrap;gap:2px}
+nav.main a{display:block;padding:.4rem .6rem;border-radius:6px;text-decoration:none;color:var(--ink);font-size:.88rem;font-weight:500}
+nav.main a:hover{background:var(--paper);color:var(--cold)}
+nav.main a[aria-current="page"]{color:var(--cold);background:color-mix(in srgb,var(--cold) 10%,transparent)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:.4rem .7rem;font:500 .9rem var(--font-body);cursor:pointer}
+@media (max-width:1020px){
+  .menu-btn{display:block}
+  nav.main{position:absolute;left:0;right:0;top:100%;background:var(--panel);border-bottom:1px solid var(--line);display:none}
+  nav.main.open{display:block}
+  nav.main ul{margin:0;flex-direction:column;padding:var(--s2) max(16px,4vw) var(--s3)}
+}
+
+/* Hero */
+.hero{position:relative;background:var(--hero);color:#eef3f8;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .wrap{position:relative;padding-top:var(--s6);padding-bottom:var(--s6)}
+.hero .ed{font:500 .8rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:#9cc4f0}
+.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);max-width:15ch;margin:var(--s3) 0}
+.hero h1 em{font-style:italic;color:#f3a091}
+.hero .meta{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);font-size:1.05rem;margin-top:var(--s4)}
+.hero .meta div span{display:block;font:500 .72rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:#8fa6bd}
+.cta{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s5)}
+.btn{display:inline-block;padding:.7rem 1.2rem;border-radius:6px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:var(--font-body)}
+.btn.primary{background:var(--warm);color:#fff}
+.btn.primary:hover{filter:brightness(1.08);color:#fff}
+.btn.ghost{border-color:rgba(255,255,255,.35);color:#eef3f8}
+.btn.ghost:hover{border-color:#fff;color:#fff}
+.btn.line{border-color:var(--line);color:var(--ink);background:var(--panel)}
+
+/* Page heading for subpages */
+.pagehead{background:var(--hero);color:#eef3f8;position:relative;overflow:hidden}
+.pagehead .wrap{padding-top:var(--s5);padding-bottom:var(--s5);position:relative}
+.pagehead h1{font-size:clamp(2.2rem,5vw,3.4rem)}
+.pagehead p{color:#a9bccf;margin-top:var(--s2);max-width:60ch}
+.pagehead .stripe{position:absolute;inset:auto 0 0 0;height:4px;background:linear-gradient(90deg,#2b6cb0,#9fc4ea 35%,#f2f2f2 50%,#efa294 65%,#b8352a)}
+
+main section{padding:var(--s6) 0;border-bottom:1px solid var(--line)}
+main section:last-child{border-bottom:0}
+.lede{font-size:1.15rem;max-width:65ch;color:var(--ink)}
+.prose{max-width:68ch;display:grid;gap:var(--s3)}
+.prose ul{margin:0;padding-left:1.2rem;display:grid;gap:var(--s1)}
+.muted{color:var(--muted)}
+.eyebrow{font:500 .75rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:var(--s2)}
+.sec-head{display:grid;gap:var(--s2);margin-bottom:var(--s5);max-width:68ch}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s5);align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.grid{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:var(--s4);display:grid;gap:var(--s2);align-content:start}
+.card h3{font-size:1.3rem}
+.tbc{display:inline-block;font:500 .68rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:.25rem .45rem;border-radius:4px;background:color-mix(in srgb,var(--warm) 14%,transparent);color:var(--warm);vertical-align:middle}
+.ph{background:color-mix(in srgb,var(--warm) 12%,transparent);border-bottom:1px dashed var(--warm);padding:0 .15em}
+.hero .ph,.pagehead .ph{background:rgba(243,160,145,.16);border-color:#f3a091}
+
+/* Topics */
+.topics{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));border-top:1px solid var(--line)}
+.topics li{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);display:flex;gap:var(--s3);align-items:baseline}
+.topics li span{font:500 .8rem var(--font-mono);color:var(--cold);min-width:2ch}
+
+/* Timeline */
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:150px 18px 1fr;gap:var(--s3);align-items:start;padding-bottom:var(--s4);position:relative}
+.timeline li::before{content:"";position:absolute;left:calc(150px + var(--s3) + 8px);top:14px;bottom:-4px;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline time{font:500 .9rem var(--font-mono);font-variant-numeric:tabular-nums;color:var(--muted);text-align:right;padding-top:2px}
+.timeline .dot{width:18px;height:18px;border-radius:50%;border:3px solid var(--cold);background:var(--panel);margin-top:3px;position:relative;z-index:1}
+.timeline li.key .dot{border-color:var(--warm);background:var(--warm)}
+.timeline b{display:block}
+@media (max-width:560px){.timeline li{grid-template-columns:18px 1fr}.timeline time{grid-column:2;text-align:left;order:-1}.timeline .dot{grid-row:1/3}.timeline li::before{left:8px}}
+
+/* History */
+.history{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.history div{background:var(--panel);padding:var(--s3)}
+.history b{font:500 .8rem var(--font-mono);color:var(--cold);display:block}
+.history span{font-size:.92rem}
+.history small{display:block;color:var(--muted);font-size:.8rem}
+.history .now{background:color-mix(in srgb,var(--warm) 10%,var(--panel))}
+.history .now b{color:var(--warm)}
+
+/* Speakers */
+.speaker{display:grid;grid-template-columns:64px 1fr;gap:var(--s3);align-items:center}
+.avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:400 1.5rem var(--font-display);color:#fff}
+
+/* Tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;padding:.7rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .78rem var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td.num{font-variant-numeric:tabular-nums;font-family:var(--font-mono);font-size:.88rem;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.plen td{background:color-mix(in srgb,var(--cold) 7%,transparent)}
+tr.social td{background:color-mix(in srgb,var(--warm) 7%,transparent)}
+
+/* Tabs for program */
+.tabs{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s3)}
+.tabs button{font:600 .9rem var(--font-body);padding:.5rem .9rem;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--cold);border-color:var(--cold);color:#fff}
+
+/* Forms */
+form.f{display:grid;gap:var(--s3);max-width:520px}
+form.f label{display:grid;gap:var(--s1);font-weight:600;font-size:.9rem}
+form.f input,form.f textarea,form.f select{font:400 1rem var(--font-body);padding:.65rem .75rem;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+form.f textarea{min-height:120px;resize:vertical}
+.notice{padding:var(--s3);border-radius:8px;border-left:4px solid var(--cold);background:color-mix(in srgb,var(--cold) 8%,transparent)}
+.notice.warm{border-color:var(--warm);background:color-mix(in srgb,var(--warm) 8%,transparent)}
+
+/* Sponsors */
+.sponsors{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--s3)}
+.sponsors div{height:84px;border:1px dashed var(--line);border-radius:8px;display:grid;place-items:center;color:var(--muted);font-size:.85rem;background:var(--panel)}
+
+footer.site{background:var(--hero);color:#a9bccf;padding:var(--s5) 0;font-size:.9rem}
+footer.site .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--s5)}
+footer.site a{color:#cfe0f2}
+footer.site h4{color:#eef3f8;font:600 .8rem var(--font-body);letter-spacing:.08em;text-transform:uppercase;margin:0 0 var(--s2)}
+footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:var(--s1)}
+footer.site .base{border-top:1px solid #22303f;margin-top:var(--s5);padding-top:var(--s3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s2)}
+@media (max-width:720px){footer.site .cols{grid-template-columns:1fr}}
+
+.view{display:none}
+.view.active{display:block}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main-content" id="skiplink">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="TSFP15 home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0c1724"/><path d="M5 22c5-8 10 4 15-3s10 3 15-4" stroke="#6aa6ec" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M5 28c5-6 10 3 15-2s10 2 15-3" stroke="#ef7b69" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M5 15c5-5 10 3 15-1s10 2 15-3" stroke="#e4eaf1" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7"/></svg>
+      <div><b>TSFP15</b><span data-k="year">2027</span></div>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
+    <nav class="main" id="mainNav" aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#venue">Venue</a></li>
+        <li><a href="#committees">Committees</a></li>
+        <li><a href="#dates">Important Dates</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#submissions">Submissions</a></li>
+        <li><a href="#registration">Registration</a></li>
+        <li><a href="#accommodation">Accommodation</a></li>
+        <li><a href="#travel">Travel</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- ============ HOME ============ -->
+<div class="view" id="view-home">
+  <div class="hero">
+    <canvas id="flow" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="ed">Fifteenth international symposium · <span data-k="year">2027</span></div>
+      <h1>Turbulence and <em>Shear Flow</em> Phenomena</h1>
+      <p style="max-width:52ch;color:#c7d5e3">TSFP15 is the principal venue for new discoveries in fundamental and applied research on turbulence and shear flows.</p>
+      <div class="meta">
+        <div><span>Dates</span><b data-k="dates" class="ph">Month DD–DD, 2027</b></div>
+        <div><span>Location</span><b data-k="city" class="ph">Host City, Country</b></div>
+        <div><span>Abstracts due</span><b data-k="abstractDue" class="ph">Month DD, 2026</b></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#submissions">Submit an abstract</a>
+        <a class="btn ghost" href="#dates">Important dates</a>
+        <a class="btn ghost" href="#subscribe">Get updates</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap two">
+      <div class="prose">
+        <div class="eyebrow">Welcome</div>
+        <h2>An invitation to <span data-k="cityShort" class="ph">Host City</span></h2>
+        <p class="lede">On behalf of the Local Organizing Committee, we invite you to submit abstracts to TSFP15 and to join colleagues from around the world in <span data-k="cityShort" class="ph">Host City</span>.</p>
+        <p>Apart from the traditional focal points of DNS, LES, turbulence closures and experiments, TSFP15 places particular emphasis on the topics listed below. The program features invited lectures, peer-reviewed proceedings, parallel technical sessions and poster presentations.</p>
+        <p class="muted">Replace this paragraph with a short description of the host city and venue: its history, the university or institute hosting the symposium, and what attendees can see nearby.</p>
+        <p>— The TSFP15 Local Organizing Committee</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">At a glance</div>
+        <table style="min-width:0">
+          <tbody>
+            <tr><td class="muted">Edition</td><td>15th TSFP</td></tr>
+            <tr><td class="muted">Dates</td><td data-k="dates" class="ph">Month DD–DD, 2027</td></tr>
+            <tr><td class="muted">Venue</td><td data-k="venue" class="ph">Congress Centre name</td></tr>
+            <tr><td class="muted">Format</td><td>4 days, parallel sessions, posters</td></tr>
+            <tr><td class="muted">Papers</td><td>6-page peer-reviewed proceedings</td></tr>
+            <tr><td class="muted">Banquet</td><td data-k="banquet" class="ph">Date &amp; location TBC</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Focus topics</div>
+        <h2>Emphasis for TSFP15</h2>
+      </div>
+      <ul class="topics">
+        <li><span>01</span>Instability and transition to turbulence</li>
+        <li><span>02</span>Wall-bounded turbulence at high Reynolds number</li>
+        <li><span>03</span>Turbulence and heat transfer</li>
+        <li><span>04</span>Compressible and high-speed flows</li>
+        <li><span>05</span>Multiphase and particle-laden flows</li>
+        <li><span>06</span>Reacting and combusting flows</li>
+        <li><span>07</span>Plasma and MHD turbulence</li>
+        <li><span>08</span>Geophysical and environmental flows</li>
+        <li><span>09</span>Flow control and drag reduction</li>
+        <li><span>10</span>Machine learning and data assimilation</li>
+        <li><span>11</span>Biological and bio-inspired flows</li>
+        <li><span>12</span>Rotating and stratified turbulence</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Highlights</div>
+        <h2>Invited speakers</h2>
+        <p class="muted">Invited lecturers will be announced here. Each card below is a placeholder for a speaker, affiliation and lecture title.</p>
+      </div>
+      <div class="grid" id="speakers"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">The TSFP series</div>
+        <h2>Since 1999</h2>
+        <p>The biennial TSFP symposia are the principal venue for reporting and disseminating recent and ongoing research on turbulence and shear flow phenomena. Read more on the <a href="https://tsfp-conference.org/">TSFP series website</a>.</p>
+      </div>
+      <div class="history" id="history"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Supporters</div>
+        <h2>Sponsors</h2>
+        <p class="muted">Sponsorship opportunities are available. <a href="#contact">Contact the organizers</a> for details.</p>
+      </div>
+      <div class="sponsors">
+        <div>Sponsor logo</div><div>Sponsor logo</div><div>Sponsor logo</div><div>Sponsor logo</div><div>Sponsor logo</div><div>Sponsor logo</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ VENUE ============ -->
+<div class="view" id="view-venue">
+  <div class="pagehead"><div class="wrap"><h1>Venue</h1><p>TSFP15 takes place at <span data-k="venue" class="ph">Congress Centre name</span>, <span data-k="city" class="ph">Host City, Country</span>.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap two">
+    <div class="prose">
+      <h2>The symposium venue</h2>
+      <p>Describe the congress centre or university campus: lecture halls available for the plenary and parallel sessions, the poster area, catering, and accessibility.</p>
+      <ul>
+        <li>Plenary hall seating for <span class="ph">NNN</span> attendees</li>
+        <li><span class="ph">4</span> parallel session rooms</li>
+        <li>Poster and exhibition foyer</li>
+        <li>Step-free access and Wi-Fi throughout</li>
+      </ul>
+      <h3 style="margin-top:var(--s4)">Conference banquet</h3>
+      <p>The banquet will be held on <span data-k="banquet" class="ph">Date &amp; location TBC</span>. Add details on the setting, how to get there from the venue, and any weather alternative.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Address</div>
+      <p><b data-k="venue" class="ph">Congress Centre name</b><br><span class="ph">Street and number</span><br><span class="ph">Postcode</span> <span data-k="city" class="ph">Host City, Country</span></p>
+      <p class="muted">Add a link to the venue on a map service here.</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ COMMITTEES ============ -->
+<div class="view" id="view-committees">
+  <div class="pagehead"><div class="wrap"><h1>Committees</h1><p>The people organizing TSFP15 and reviewing its papers.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="sec-head"><h2>Local Organizing Committee</h2></div>
+    <div class="grid" id="loc"></div>
+  </div></section>
+  <section><div class="wrap">
+    <div class="sec-head"><h2>International Scientific Committee</h2><p class="muted">Add members as confirmed: name, affiliation, country.</p></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Name</th><th>Affiliation</th><th>Country</th></tr></thead>
+      <tbody id="isc"></tbody>
+    </table></div>
+  </div></section>
+</div>
+
+<!-- ============ DATES ============ -->
+<div class="view" id="view-dates">
+  <div class="pagehead"><div class="wrap"><h1>Important Dates</h1><p>All deadlines are 23:59 Anywhere on Earth (AoE). Dates marked TBC are provisional.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap two">
+    <ol class="timeline" id="timeline"></ol>
+    <div class="notice warm"><b>Provisional schedule.</b> These dates follow the usual TSFP cycle and will be confirmed by the organizing committee. <a href="#subscribe">Subscribe</a> to hear when they change.</div>
+  </div></section>
+</div>
+
+<!-- ============ AWARDS ============ -->
+<div class="view" id="view-awards">
+  <div class="pagehead"><div class="wrap"><h1>Awards</h1><p>Recognition for outstanding contributions presented at TSFP15.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="grid">
+      <div class="card"><div class="eyebrow">Lecture</div><h3>Kasagi Award Lecture</h3><p>Delivered at the opening of the symposium. Add the award's purpose, eligibility and the 2027 recipient once announced.</p></div>
+      <div class="card"><div class="eyebrow">Papers</div><h3>Best Paper Awards</h3><p>Selected from the full papers by the Scientific Committee. Add the number of awards and the selection criteria.</p></div>
+      <div class="card"><div class="eyebrow">Posters</div><h3>Best Poster Awards</h3><p>Chosen during the poster sessions. Add whether early-career researchers are eligible and how judging works.</p></div>
+      <div class="card"><div class="eyebrow">Students</div><h3>Student Travel Grants</h3><p>Support for students presenting at TSFP15. Add the amount, eligibility and application deadline.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ PROGRAM ============ -->
+<div class="view" id="view-program">
+  <div class="pagehead"><div class="wrap"><h1>Program</h1><p>Tentative day-by-day outline. The detailed session program will be posted after paper acceptance.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="tabs" role="tablist" id="dayTabs"></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th style="width:140px">Time</th><th>Session</th><th>Room</th></tr></thead>
+      <tbody id="dayBody"></tbody>
+    </table></div>
+  </div></section>
+</div>
+
+<!-- ============ SUBMISSIONS ============ -->
+<div class="view" id="view-submissions">
+  <div class="pagehead"><div class="wrap"><h1>Submissions</h1><p>Two stages: an extended abstract, then a full paper for the proceedings.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap two">
+    <div class="prose">
+      <h2>How to submit</h2>
+      <h3>1. Extended abstract</h3>
+      <p>Submit a 2-page extended abstract (including figures and references) by <b data-k="abstractDue" class="ph">Month DD, 2026</b>. Abstracts are reviewed by the Scientific Committee for relevance and quality.</p>
+      <h3>2. Full paper</h3>
+      <p>Authors of accepted abstracts submit a 6-page full paper for the peer-reviewed proceedings. At least one author must register for each paper to be included.</p>
+      <h3>Templates</h3>
+      <ul>
+        <li>LaTeX template <span class="tbc">TBC</span></li>
+        <li>Word template <span class="tbc">TBC</span></li>
+      </ul>
+      <h3>Topics</h3>
+      <p>Submissions on any aspect of turbulence and shear flows are welcome. See the <a href="#home">focus topics</a> on the home page.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Submission portal</div>
+      <p>The online submission system opens on <b class="ph">Month DD, 2026</b>.</p>
+      <a class="btn primary" href="#submissions" aria-disabled="true" style="opacity:.6;pointer-events:none">Portal opens soon</a>
+      <p class="muted" style="font-size:.9rem">Replace this button with the link to your submission system (for example ConfTool, EasyChair or Oxford Abstracts).</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ REGISTRATION ============ -->
+<div class="view" id="view-registration">
+  <div class="pagehead"><div class="wrap"><h1>Registration</h1><p>Registration opens after abstract acceptance. Fees below are placeholders.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="tablewrap"><table>
+      <thead><tr><th>Category</th><th>Early (by <span class="ph">date</span>)</th><th>Regular</th><th>Includes</th></tr></thead>
+      <tbody>
+        <tr><td>Regular participant</td><td class="num">€ ___</td><td class="num">€ ___</td><td>Sessions, proceedings, coffee breaks, lunches, reception, banquet</td></tr>
+        <tr><td>Student</td><td class="num">€ ___</td><td class="num">€ ___</td><td>Same as regular; proof of student status required</td></tr>
+        <tr><td>Accompanying person</td><td class="num">€ ___</td><td class="num">€ ___</td><td>Reception and banquet</td></tr>
+        <tr><td>Extra banquet ticket</td><td class="num">€ ___</td><td class="num">€ ___</td><td>Banquet only</td></tr>
+      </tbody>
+    </table></div>
+    <div class="prose" style="margin-top:var(--s4)">
+      <p>At least one author per accepted paper must complete registration by the <a href="#dates">author registration deadline</a>. Add cancellation policy, invoice and visa-letter information here.</p>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ ACCOMMODATION ============ -->
+<div class="view" id="view-accommodation">
+  <div class="pagehead"><div class="wrap"><h1>Accommodation</h1><p>Hotels near the venue with TSFP15 room blocks.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="grid">
+      <div class="card"><div class="eyebrow">Near venue</div><h3 class="ph">Hotel name</h3><p>Walking distance: <span class="ph">5 min</span>. Rate: <span class="ph">€ ___ / night</span>. Booking code: <span class="ph">TSFP15</span>.</p></div>
+      <div class="card"><div class="eyebrow">City centre</div><h3 class="ph">Hotel name</h3><p>Walking distance: <span class="ph">15 min</span>. Rate: <span class="ph">€ ___ / night</span>. Booking code: <span class="ph">TSFP15</span>.</p></div>
+      <div class="card"><div class="eyebrow">Budget</div><h3 class="ph">Hotel or hostel name</h3><p>Public transport: <span class="ph">10 min</span>. Rate: <span class="ph">€ ___ / night</span>.</p></div>
+    </div>
+    <div class="notice" style="margin-top:var(--s4)">Room blocks are held until <span class="ph">date</span>. Book early: the symposium falls in the summer travel season.</div>
+  </div></section>
+</div>
+
+<!-- ============ TRAVEL ============ -->
+<div class="view" id="view-travel">
+  <div class="pagehead"><div class="wrap"><h1>Travel</h1><p>Getting to <span data-k="cityShort" class="ph">Host City</span> and around it.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap">
+    <div class="grid">
+      <div class="card"><h3>By air</h3><p>Nearest international airport: <span class="ph">Airport name (code)</span>. Add transfer options and journey times to the city.</p></div>
+      <div class="card"><h3>By train</h3><p>Add main rail connections and the station closest to the venue.</p></div>
+      <div class="card"><h3>Local transport</h3><p>Add tram, bus or metro lines to the venue and any transit pass included with registration.</p></div>
+      <div class="card"><h3>Visas</h3><p>Participants who need a visa should apply early. The organizers can issue invitation letters to registered participants.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ SUBSCRIBE ============ -->
+<div class="view" id="view-subscribe">
+  <div class="pagehead"><div class="wrap"><h1>Subscribe</h1><p>Get announcements about deadlines, speakers and registration.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap two">
+    <form class="f" id="subForm" novalidate>
+      <label for="subName">Name<input id="subName" name="name" autocomplete="name" required></label>
+      <label for="subEmail">Email<input id="subEmail" name="email" type="email" autocomplete="email" required></label>
+      <label for="subAff">Affiliation<input id="subAff" name="affiliation" autocomplete="organization"></label>
+      <button class="btn primary" type="submit">Subscribe to updates</button>
+      <p id="subMsg" role="status" class="muted"></p>
+    </form>
+    <div class="notice">This form is a front-end placeholder. Connect it to your mailing list service (for example Mailchimp or a university list server) before going live.</div>
+  </div></section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="view" id="view-contact">
+  <div class="pagehead"><div class="wrap"><h1>Contact Us</h1><p>Questions about submissions, registration or sponsorship.</p></div><div class="stripe"></div></div>
+  <section><div class="wrap two">
+    <div class="prose">
+      <h2>Symposium secretariat</h2>
+      <p>Email: <span data-k="email" class="ph">info@tsfp15.org</span></p>
+      <p><span class="ph">Department / Institute</span><br><span class="ph">University</span><br><span data-k="city" class="ph">Host City, Country</span></p>
+    </div>
+    <form class="f" id="contactForm" novalidate>
+      <label for="cName">Name<input id="cName" autocomplete="name" required></label>
+      <label for="cEmail">Email<input id="cEmail" type="email" autocomplete="email" required></label>
+      <label for="cTopic">Topic<select id="cTopic"><option>Submissions</option><option>Registration</option><option>Sponsorship</option><option>Other</option></select></label>
+      <label for="cMsg">Message<textarea id="cMsg" required></textarea></label>
+      <button class="btn primary" type="submit">Prepare message</button>
+      <p id="cOut" role="status" class="muted"></p>
+    </form>
+  </div></section>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>TSFP15</h4>
+        <p>15th International Symposium on Turbulence and Shear Flow Phenomena<br><span data-k="dates">Month DD–DD, 2027</span> · <span data-k="city">Host City, Country</span></p>
+      </div>
+      <div>
+        <h4>Participate</h4>
+        <ul><li><a href="#submissions">Submissions</a></li><li><a href="#registration">Registration</a></li><li><a href="#dates">Important dates</a></li></ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul><li><a href="#venue">Venue</a></li><li><a href="#accommodation">Accommodation</a></li><li><a href="#travel">Travel</a></li></ul>
+      </div>
+    </div>
+    <div class="base"><span>© <span data-k="year">2027</span> TSFP15 Local Organizing Committee</span><a href="https://tsfp-conference.org/">TSFP series</a></div>
+  </div>
+</footer>
+
+<script>
+/* ===== Edit these values to fill in the whole site ===== */
+const CONFIG = {
+  year: "2027",
+  dates: "Month DD–DD, 2027",
+  city: "Host City, Country",
+  cityShort: "Host City",
+  venue: "Congress Centre name",
+  abstractDue: "Month DD, 2026",
+  banquet: "Date & location TBC",
+  email: "info@tsfp15.org",
+  // set filled:true once the values above are real, to remove the placeholder highlighting
+  filled: false
+};
+
+const DATES = [
+  ["Nov 2026","Call for abstracts opens",false,true],
+  ["Feb 2027","Extended abstract deadline",true,true],
+  ["Mar 2027","Notification of acceptance",false,true],
+  ["Mar 2027","Registration opens",false,true],
+  ["Apr 2027","Full paper deadline",true,true],
+  ["May 2027","Early registration and author registration deadline",false,true],
+  ["Summer 2027","TSFP15 symposium",true,true]
+];
+
+const HISTORY = [
+  ["TSFP1","1999","Santa Barbara, USA"],["TSFP2","2001","Stockholm, Sweden"],["TSFP3","2003","Sendai, Japan"],
+  ["TSFP4","2005","Williamsburg, USA"],["TSFP5","2007","Munich, Germany"],["TSFP6","2009","Seoul, Korea"],
+  ["TSFP7","2011","Ottawa, Canada"],["TSFP8","2013","Poitiers, France"],["TSFP9","2015","Melbourne, Australia"],
+  ["TSFP10","2017","Chicago, USA"],["TSFP11","2019","Southampton, UK"],["TSFP12","2022","Osaka, Japan"],
+  ["TSFP13","2024","Montréal, Canada"],["TSFP14","2026","Heidelberg, Germany"]
+];
+
+const SPEAKERS = Array.from({length:6},(_,i)=>({name:"Speaker name",aff:"Institution, Country",title:"Lecture title TBA"}));
+const LOC = [
+  {name:"Name Surname",role:"Chair",aff:"University"},
+  {name:"Name Surname",role:"Co-chair",aff:"University"},
+  {name:"Name Surname",role:"Program",aff:"University"},
+  {name:"Name Surname",role:"Finance",aff:"University"}
+];
+const ISC = Array.from({length:6},()=>["Name Surname","University / Institute","Country"]);
+
+const PROGRAM = {
+  "Day 0":[["15:00–20:00","Registration desk opens",""]],
+  "Day 1":[["07:30–08:00","Registration","Foyer"],["08:00–08:20","Opening ceremony","Plenary hall","plen"],["08:20–09:10","Kasagi Award Lecture","Plenary hall","plen"],["09:20–10:40","Parallel technical sessions","Rooms A–D"],["10:40–11:00","Coffee break","Foyer"],["11:00–12:20","Parallel technical sessions","Rooms A–D"],["12:20–13:40","Lunch",""],["13:50–14:40","Invited lecture 1","Plenary hall","plen"],["14:50–16:10","Parallel technical sessions","Rooms A–D"],["18:00–20:00","Welcome reception and posters","Foyer","social"]],
+  "Day 2":[["08:20–09:10","Invited lecture 2","Plenary hall","plen"],["09:20–12:20","Parallel technical sessions","Rooms A–D"],["13:50–14:40","Invited lecture 3","Plenary hall","plen"],["14:50–17:30","Parallel sessions and posters","Rooms A–D"],["19:00–23:00","Conference banquet","TBC","social"]],
+  "Day 3":[["08:20–09:10","Invited lecture 4","Plenary hall","plen"],["09:20–12:20","Parallel technical sessions","Rooms A–D"],["13:50–14:40","Invited lecture 5","Plenary hall","plen"],["14:50–17:30","Parallel technical sessions","Rooms A–D"]],
+  "Day 4":[["08:20–09:10","Invited lecture 6","Plenary hall","plen"],["09:20–12:20","Parallel technical sessions","Rooms A–D"],["12:20–12:40","Awards and closing","Plenary hall","plen"]]
+};
+
+/* ===== Rendering ===== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.querySelectorAll("[data-k]").forEach(el=>{
+  const v = CONFIG[el.dataset.k]; if(v) el.textContent = v;
+  if(CONFIG.filled) el.classList.remove("ph");
+});
+if(CONFIG.filled) document.querySelectorAll(".ph").forEach(e=>e.classList.remove("ph"));
+
+const tones = ["#1f5fa8","#c2402f","#2b6cb0","#b8352a","#3d7cc0","#a8473a"];
+$("#speakers").innerHTML = SPEAKERS.map((s,i)=>`<div class="card speaker"><div class="avatar" style="background:${tones[i%6]}">${i+1}</div><div><b>${esc(s.name)}</b><div class="muted" style="font-size:.9rem">${esc(s.aff)}</div><div style="font-size:.9rem;font-style:italic">${esc(s.title)}</div></div></div>`).join("");
+$("#history").innerHTML = HISTORY.map(h=>`<div><b>${h[0]}</b><span>${h[2]}</span><small>${h[1]}</small></div>`).join("") + `<div class="now"><b>TSFP15</b><span>${esc(CONFIG.city)}</span><small>${CONFIG.year}</small></div>`;
+$("#loc").innerHTML = LOC.map(p=>`<div class="card"><div class="eyebrow">${esc(p.role)}</div><h3>${esc(p.name)}</h3><p class="muted">${esc(p.aff)}</p></div>`).join("");
+$("#isc").innerHTML = ISC.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("");
+$("#timeline").innerHTML = DATES.map(d=>`<li class="${d[2]?"key":""}"><time>${esc(d[0])}</time><span class="dot"></span><div><b>${esc(d[1])}</b>${d[3]?'<span class="tbc">TBC</span>':""}</div></li>`).join("");
+
+const days = Object.keys(PROGRAM);
+function showDay(d){
+  document.querySelectorAll("#dayTabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.d===d));
+  $("#dayBody").innerHTML = PROGRAM[d].map(r=>`<tr class="${r[3]||""}"><td class="num">${r[0]}</td><td>${esc(r[1])}</td><td class="muted">${esc(r[2])}</td></tr>`).join("");
+}
+$("#dayTabs").innerHTML = days.map(d=>`<button role="tab" id="tab-${d.replace(/\s/g,"")}" data-d="${d}">${d}</button>`).join("");
+$("#dayTabs").addEventListener("click",e=>{const b=e.target.closest("button"); if(b) showDay(b.dataset.d);});
+showDay("Day 1");
+
+/* Forms: no backend in this preview */
+$("#subForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const em = $("#subEmail").value.trim();
+  $("#subMsg").textContent = /.+@.+\..+/.test(em) && $("#subName").value.trim()
+    ? "Thanks. This preview does not store sign-ups yet; connect the form to a mailing list to collect them."
+    : "Enter your name and a valid email address.";
+});
+$("#contactForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(!$("#cName").value.trim() || !$("#cMsg").value.trim()){ $("#cOut").textContent="Fill in your name and a message."; return; }
+  $("#cOut").textContent = "Messages are not sent from this preview. Email "+CONFIG.email+" directly, or connect this form to a mail service.";
+});
+
+/* Routing */
+const VIEWS = ["home","venue","committees","dates","awards","program","submissions","registration","accommodation","travel","subscribe","contact"];
+function route(){
+  let h = location.hash.replace("#","");
+  if(h==="main-content") return;
+  if(!VIEWS.includes(h)) h="home";
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active", v.id==="view-"+h));
+  document.querySelectorAll("nav.main a").forEach(a=>{
+    if(a.getAttribute("href")==="#"+h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+  });
+  $("#mainNav").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+  if(h==="home") startFlow();
+}
+window.addEventListener("hashchange",route);
+$("#menuBtn").addEventListener("click",()=>{const o=$("#mainNav").classList.toggle("open"); $("#menuBtn").setAttribute("aria-expanded",o);});
+
+/* Hero: particles advected through a row of alternating vortices (a von Kármán street) */
+let flowStarted=false;
+function startFlow(){
+  if(flowStarted) return; flowStarted=true;
+  const cv=$("#flow"), ctx=cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W,H,P=[],t=0;
+  function size(){
+    const r=cv.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
+    W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle="#0c1724";ctx.fillRect(0,0,W,H);
+    P=Array.from({length:Math.round(W*H/1400)},()=>({x:Math.random()*W,y:Math.random()*H,a:Math.random()*200}));
+  }
+  function vel(x,y){
+    let u=1.1,v=0; const sp=H*0.55, a=sp*0.28;
+    for(let k=-2;k<Math.ceil(W/sp)+3;k++){
+      for(const s of [1,-1]){
+        const cx=((k+(s<0?0.5:0))*sp + t*0.6)%(W+sp*3)-sp, cy=H/2 + s*a;
+        const dx=x-cx, dy=y-cy, r2=dx*dx+dy*dy+800, g=s*sp*1.3/r2*(1-Math.exp(-r2/(sp*sp*0.08)));
+        u+=-g*dy; v+=g*dx;
+      }
+    }
+    return [u,v];
+  }
+  function step(n){
+    for(let i=0;i<n;i++){
+      ctx.fillStyle="rgba(12,23,36,0.06)";ctx.fillRect(0,0,W,H);
+      for(const p of P){
+        const [u,v]=vel(p.x,p.y), nx=p.x+u, ny=p.y+v;
+        const w=v/1.5; // sign of transverse velocity picks the colour, like a vorticity map
+        ctx.strokeStyle = w>0.15 ? "rgba(239,123,105,.55)" : w<-0.15 ? "rgba(106,166,236,.55)" : "rgba(220,230,240,.28)";
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(nx,ny);ctx.stroke();
+        p.x=nx;p.y=ny;p.a++;
+        if(p.x>W+5||p.x<-5||p.y<-5||p.y>H+5||p.a>260){p.x=Math.random()*W*0.15;p.y=Math.random()*H;p.a=0;}
+      }
+      t+=1;
+    }
+  }
+  size(); step(reduce?160:60);
+  addEventListener("resize",()=>{size();step(60);});
+  if(!reduce){ (function loop(){ if(document.getElementById("view-home").classList.contains("active")) step(1); requestAnimationFrame(loop); })(); }
+}
+route();
+</script>
+</body>
+</html>
